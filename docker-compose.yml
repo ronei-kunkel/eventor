@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:8.0.32
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+    restart: always
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
